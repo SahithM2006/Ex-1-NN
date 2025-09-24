@@ -37,12 +37,47 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
-
+```
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df = pd.read_csv("Churn_Modelling.csv")
+print(df)
+x = df.iloc[:, :-1].values
+x
+y = df.iloc[:, -1].values
+y
+print(df.isnull().sum())
+df.duplicated()
+df.describe()
+df = df.drop(['Surname', 'Geography', 'Gender'], axis=1)
+scaler = MinMaxScaler()
+df1 = pd.DataFrame(scaler.fit_transform(df))
+print(df1)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+print(x_train)
+print(len(x_train))
+print(x_test)
+print(len(x_test))
+```
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
 
+ORIGINAL DATAFRAME :
+
+<img width="676" height="750" alt="Screenshot 2025-09-24 103104" src="https://github.com/user-attachments/assets/4c581bf1-83e5-4b25-b425-2c53365b4f06" />
+
+Missing values check :
+
+<img width="185" height="285" alt="Screenshot 2025-09-24 103120" src="https://github.com/user-attachments/assets/36ebd336-4ad1-44e1-a314-d31668da70d2" />
+
+Scaled DataFrame (df1) :
+
+<img width="671" height="489" alt="Screenshot 2025-09-24 103154" src="https://github.com/user-attachments/assets/80696b49-9a91-4302-a635-7635598f4944" />
+
+x (features before dropping/splitting) :
+
+<img width="518" height="338" alt="Screenshot 2025-09-24 103207" src="https://github.com/user-attachments/assets/e7ae31fe-690b-48cb-aae3-dcd180bcd37f" />
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
